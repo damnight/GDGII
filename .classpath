@@ -2,5 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files/processing-3.3.4-windows64/processing-3.3.4/core/library/core.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/minim.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/jl1.0.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/jsminim.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/mp3spi1.9.4.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/tritonus_aos.jar"/>
+	<classpathentry kind="lib" path="D:/User/Marco/Documents/Processing/libraries/Minim-2.2.0/library/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
