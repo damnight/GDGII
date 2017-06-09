@@ -33,7 +33,7 @@ public class Main extends PApplet {
 
 
     public void setup() {
-    	pg = createGraphics(ResX, ResY);
+    	//pg = createGraphics(ResX, ResY);
     	 /*player = new Player(this, "src/data/aphex.mp3");
     	 fft = player.getFFT();*/
     	background(backgroundcolor);
