@@ -13,7 +13,7 @@ public class ApplicationMain extends PApplet{
 	Minim minim;
 	AudioPlayer song;
 	FFT fft;
-	private final int BACKGROUND_COLOR = 0;
+	private final int BACKGROUND_COLOR = 55;
 	//walls
 	int numWalls = 500;
 	Wall[] walls;
@@ -167,24 +167,20 @@ public class ApplicationMain extends PApplet{
 		    
 		    
 		    //left-down
-		    line(0, height-(previousBandValue*heightMult),(float)-12333.0, 0, height-(bandValue*heightMult), 200);
-		    line((previousBandValue*heightMult), height, (float)-12447.0, (bandValue*heightMult), height, 200);
-		    line(0, height-(previousBandValue*heightMult),(float) -10440.0, (bandValue*heightMult), height, dist*i);
+		    line(0, height, dist*(i-1), 0, height, dist*i);
+		   
+	
 		    
 		    //left-up
-		    line(0, (previousBandValue*heightMult), dist*(i-1), 0, (bandValue*heightMult), dist*i);
-		    line((previousBandValue*heightMult), 0, dist*(i-1), (bandValue*heightMult), 0, dist*i);
-		    line(0, (previousBandValue*heightMult), dist*(i-1), (bandValue*heightMult), 0, dist*i);
+		    line(0, 0, dist*(i-1), 0, 0, dist*i);
+
 		    
 		    //right-down
-		    line(width, height-(previousBandValue*heightMult), dist*(i-1), width, height-(bandValue*heightMult), dist*i);
-		    line(width-(previousBandValue*heightMult), height, dist*(i-1), width-(bandValue*heightMult), height, dist*i);
-		    line(width, height-(previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), height, dist*i);
+		    line(width, height, dist*(i-1), width, height, dist*i);
 		    
 		    //right-up
-		    line(width, (previousBandValue*heightMult), dist*(i-1), width, (bandValue*heightMult), dist*i);
-		    line(width-(previousBandValue*heightMult), 0, dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
-		    line(width, (previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
+		    line(width, 0, dist*(i-1), width, 0, dist*i);
+		    
 		    
 		    //Save the value for the next loop
 		    previousBandValue = bandValue;
@@ -195,7 +191,7 @@ public class ApplicationMain extends PApplet{
 		  {
 		    //a band is assigned to each wall
 		    float intensity = fft.getBand(i%((int)(fft.specSize()*specHi)));
-		    walls[i].display(scoreLow, scoreMid, scoreHi, 1, 1);
+		    walls[i].display(scoreLow, scoreMid, scoreHi, intensity, scoreGlobal);
 		  }
 		}
 
