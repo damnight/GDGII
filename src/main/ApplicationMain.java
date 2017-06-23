@@ -2,6 +2,7 @@ package main;
 
 import ddf.minim.*;
 import ddf.minim.analysis.*;
+import model.CentrePanel;
 import model.Wall;
 import processing.core.PApplet;
 
@@ -19,7 +20,7 @@ public class ApplicationMain extends PApplet{
 	Wall[] walls;
 	
 	//TODO
-//variables defininf the zones in the spectrum
+	//variables defininf the zones in the spectrum
 	float specLow = (float) 0.03; // 3%
 	float specMid = (float) 0.125;  // 12.5%
 	float specHi = (float) 0.20;   // 20%
@@ -36,6 +37,7 @@ public class ApplicationMain extends PApplet{
 
 	//decrease rate
 	float scoreDecreaseRate = 25;
+	private CentrePanel cPanel;
 
 	
 	
@@ -54,6 +56,10 @@ public class ApplicationMain extends PApplet{
 		 
 		 //load fft
 		 fft = new FFT(song.bufferSize(), song.sampleRate());
+		 
+		 //Centre Panel
+		 cPanel = new CentrePanel(800, 600, 600, 600, -25, color(255,0,0), this);
+		 
 		 
 		  //visible walls
 		  walls = new Wall[numWalls];
@@ -193,8 +199,11 @@ public class ApplicationMain extends PApplet{
 		    float intensity = fft.getBand(i%((int)(fft.specSize()*specHi)));
 		    walls[i].display(scoreLow, scoreMid, scoreHi, intensity, scoreGlobal);
 		  }
-		}
+		
+	
+		cPanel.display(1);
 
+	}
 		
     public static void main(String[] args) {
         PApplet.main(new String[]{ApplicationMain.class.getName()});

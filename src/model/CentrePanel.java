@@ -11,6 +11,9 @@ public class CentrePanel {
 	
 	int height;
 	int width;
+	float x;
+	float y;
+	float z;
 	int rgbColor;
 	PApplet parent;
 	
@@ -22,10 +25,13 @@ public class CentrePanel {
 	 * @param rgbColor - its beginning color, this will be used to compute the change in color too (as a progression on the color wheel that makes sense)
 	 * @param parent - the main class, so the centrePanel can be written over and displayed
 	 */
-	public CentrePanel(int height, int width, int rgbColor, PApplet parent){
+	public CentrePanel(int height, int width, float x, float y, float z, int rgbColor, PApplet parent){
 		
 		this.height = height;
 		this.width = width;
+		this.x = x;
+		this.y = y;
+		this.z = z;
 		this.rgbColor = rgbColor;
 		this.parent = parent;
 	}
@@ -41,6 +47,9 @@ public class CentrePanel {
 		}
 		if(intensity == 1){
 			//TODO change color
+			
+			parent.fill(parent.color(255,255,0));
+		
 		}
 		if(intensity > 1 || intensity < 0 ){
 			System.err.println("Displayfunctionality wasn't coded for this intesity!");
