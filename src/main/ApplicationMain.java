@@ -6,6 +6,8 @@ import model.Wall;
 import processing.core.PApplet;
 
 public class ApplicationMain extends PApplet{
+	
+	//TODO beat datastructure
 
 	//fields
 	Minim minim;
@@ -17,26 +19,22 @@ public class ApplicationMain extends PApplet{
 	Wall[] walls;
 	
 	//TODO
-	// Variables qui définissent les "zones" du spectre
-	// Par exemple, pour les basses, on prend seulement les premières 4% du spectre total
+//variables defininf the zones in the spectrum
 	float specLow = (float) 0.03; // 3%
 	float specMid = (float) 0.125;  // 12.5%
 	float specHi = (float) 0.20;   // 20%
 
-	// Il reste donc 64% du spectre possible qui ne sera pas utilisé. 
-	// Ces valeurs sont généralement trop hautes pour l'oreille humaine de toute facon.
-
-	// Valeurs de score pour chaque zone
+	//score values for each zones
 	float scoreLow = 0;
 	float scoreMid = 0;
 	float scoreHi = 0;
 
-	// Valeur précédentes, pour adoucir la reduction
+	//previous values
 	float oldScoreLow = scoreLow;
 	float oldScoreMid = scoreMid;
 	float oldScoreHi = scoreHi;
 
-	// Valeur d'adoucissement
+	//decrease rate
 	float scoreDecreaseRate = 25;
 
 	
@@ -143,7 +141,7 @@ public class ApplicationMain extends PApplet{
 		  //Cube for every freqence band
 		  for(int i = 0; i < numWalls; i++)
 		  {
-		    //Valeur de la bande de fréquence
+		    //Valeur de la bande de frï¿½quence
 		    float bandValue = fft.getBand(i);
 
 		  }
