@@ -2,42 +2,42 @@ package main;
 
 import ddf.minim.*;
 import ddf.minim.analysis.*;
+import model.CentrePanel;
 import model.Wall;
 import processing.core.PApplet;
 
 public class ApplicationMain extends PApplet{
+	
+	//TODO beat datastructure
 
 	//fields
 	Minim minim;
 	AudioPlayer song;
 	FFT fft;
-	private final int BACKGROUND_COLOR = 0;
+	private final int BACKGROUND_COLOR = 55;
 	//walls
 	int numWalls = 500;
 	Wall[] walls;
 	
 	//TODO
-	// Variables qui définissent les "zones" du spectre
-	// Par exemple, pour les basses, on prend seulement les premières 4% du spectre total
+	//variables defininf the zones in the spectrum
 	float specLow = (float) 0.03; // 3%
 	float specMid = (float) 0.125;  // 12.5%
 	float specHi = (float) 0.20;   // 20%
 
-	// Il reste donc 64% du spectre possible qui ne sera pas utilisé. 
-	// Ces valeurs sont généralement trop hautes pour l'oreille humaine de toute facon.
-
-	// Valeurs de score pour chaque zone
+	//score values for each zones
 	float scoreLow = 0;
 	float scoreMid = 0;
 	float scoreHi = 0;
 
-	// Valeur précédentes, pour adoucir la reduction
+	//previous values
 	float oldScoreLow = scoreLow;
 	float oldScoreMid = scoreMid;
 	float oldScoreHi = scoreHi;
 
-	// Valeur d'adoucissement
+	//decrease rate
 	float scoreDecreaseRate = 25;
+	private CentrePanel cPanel;
 
 	
 	
@@ -56,6 +56,10 @@ public class ApplicationMain extends PApplet{
 		 
 		 //load fft
 		 fft = new FFT(song.bufferSize(), song.sampleRate());
+		 
+		 //Centre Panel
+		 cPanel = new CentrePanel(800, 600, 600, 600, -25, color(255,0,0), this);
+		 
 		 
 		  //visible walls
 		  walls = new Wall[numWalls];
@@ -143,7 +147,7 @@ public class ApplicationMain extends PApplet{
 		  //Cube for every freqence band
 		  for(int i = 0; i < numWalls; i++)
 		  {
-		    //Valeur de la bande de fréquence
+		    //Valeur de la bande de frï¿½quence
 		    float bandValue = fft.getBand(i);
 
 		  }
@@ -169,24 +173,20 @@ public class ApplicationMain extends PApplet{
 		    
 		    
 		    //left-down
-		    line(0, height-(previousBandValue*heightMult),(float)-12333.0, 0, height-(bandValue*heightMult), 200);
-		    line((previousBandValue*heightMult), height, (float)-12447.0, (bandValue*heightMult), height, 200);
-		    line(0, height-(previousBandValue*heightMult),(float) -10440.0, (bandValue*heightMult), height, dist*i);
+		    line(0, height, dist*(i-1), 0, height, dist*i);
+		   
+	
 		    
 		    //left-up
-		    line(0, (previousBandValue*heightMult), dist*(i-1), 0, (bandValue*heightMult), dist*i);
-		    line((previousBandValue*heightMult), 0, dist*(i-1), (bandValue*heightMult), 0, dist*i);
-		    line(0, (previousBandValue*heightMult), dist*(i-1), (bandValue*heightMult), 0, dist*i);
+		    line(0, 0, dist*(i-1), 0, 0, dist*i);
+
 		    
 		    //right-down
-		    line(width, height-(previousBandValue*heightMult), dist*(i-1), width, height-(bandValue*heightMult), dist*i);
-		    line(width-(previousBandValue*heightMult), height, dist*(i-1), width-(bandValue*heightMult), height, dist*i);
-		    line(width, height-(previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), height, dist*i);
+		    line(width, height, dist*(i-1), width, height, dist*i);
 		    
 		    //right-up
-		    line(width, (previousBandValue*heightMult), dist*(i-1), width, (bandValue*heightMult), dist*i);
-		    line(width-(previousBandValue*heightMult), 0, dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
-		    line(width, (previousBandValue*heightMult), dist*(i-1), width-(bandValue*heightMult), 0, dist*i);
+		    line(width, 0, dist*(i-1), width, 0, dist*i);
+		    
 		    
 		    //Save the value for the next loop
 		    previousBandValue = bandValue;
@@ -197,10 +197,13 @@ public class ApplicationMain extends PApplet{
 		  {
 		    //a band is assigned to each wall
 		    float intensity = fft.getBand(i%((int)(fft.specSize()*specHi)));
-		    walls[i].display(scoreLow, scoreMid, scoreHi, 1, 1);
+		    walls[i].display(scoreLow, scoreMid, scoreHi, intensity, scoreGlobal);
 		  }
-		}
+		
+	
+		cPanel.display(1);
 
+	}
 		
     public static void main(String[] args) {
         PApplet.main(new String[]{ApplicationMain.class.getName()});
